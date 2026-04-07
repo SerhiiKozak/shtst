@@ -69,7 +69,7 @@
         const tbody = document.getElementById('ticketsBody');
         tbody.innerHTML = '';
 
-        data.data.data.forEach(ticket => {
+        data.data.forEach(ticket => {
             const customer = ticket.customer || {};
 
             tbody.innerHTML += `
