@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Database\Factories\CustomerFactory;
 
 class Customer extends Model
@@ -17,7 +18,7 @@ class Customer extends Model
         'email',
     ];
 
-    public function rules(): array
+    public static function rules(): array
     {
         return [
             'name' => ['required', 'string', 'max:255'],
@@ -30,5 +31,9 @@ class Customer extends Model
 
             'email' => ['nullable', 'email', 'max:255'],
         ];
+    }
+    public function tickets(): HasMany
+    {
+        return $this->hasMany(Ticket::class);
     }
 }

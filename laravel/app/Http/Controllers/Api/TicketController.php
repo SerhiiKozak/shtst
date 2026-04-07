@@ -9,7 +9,7 @@ use App\Models\Customer;
 use App\Models\Ticket;
 use App\Models\TicketStatus;
 
-class WidgetController extends Controller
+class TicketController extends Controller
 {
     public function store(Request $request)
     {
@@ -44,6 +44,7 @@ class WidgetController extends Controller
                 'theme' => strip_tags($request->theme),
                 'text' => strip_tags($request->text),
                 'ticket_status_id' => $status->id,
+                'customer_id' => $customer->id,
             ]);
 
             if ($request->hasFile('files')) {
@@ -52,12 +53,11 @@ class WidgetController extends Controller
                         ->toMediaCollection('attachments');
                 }
             }
-
-            $ticket->customers()->syncWithoutDetaching([$customer->id]);
         });
 
         return response()->json([
             'success' => true,
+            'message' => 'Ticket created successfully',
             'ticket' => [
                 'id' => $ticket->id
             ]
