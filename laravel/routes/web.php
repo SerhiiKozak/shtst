@@ -9,7 +9,7 @@ Route::get('/widget/ticket', [WidgetController::class, 'form']);
 
 Route::post('api/tickets', [ApiTicketController::class, 'store'])->middleware('throttle:widget-ticket');
 
-Route::middleware(['auth:sanctum', 'role:admin|manager'])
+Route::middleware(['auth', 'role:admin|manager'])
     ->group(function () {
         Route::get('api/dashboard/tickets', [TicketController::class, 'index']);
         Route::get('api/dashboard/tickets/{ticket}', [TicketController::class, 'show']);
