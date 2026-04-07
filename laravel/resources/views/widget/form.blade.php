@@ -36,7 +36,7 @@
         const formData = new FormData(this);
 
         try {
-            const res = await fetch('/api/widget/ticket', {
+            const res = await fetch('/api/tickets', {
                 method: 'POST',
                 body: formData,
                 headers: {
@@ -53,8 +53,9 @@
                 showMessage(data.message);
             }
         } catch (err) {
-            console.error(err);
-            alert('Server error');
+            console.error('Server error');
+        } finally {
+            submitBtn.disabled = false;
         }
     });
 
