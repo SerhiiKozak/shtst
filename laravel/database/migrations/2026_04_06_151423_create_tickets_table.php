@@ -18,6 +18,9 @@ return new class extends Migration
             $table->foreignId('ticket_status_id')
                 ->constrained('ticket_statuses')
                 ->cascadeOnDelete();
+            $table->foreignId('customer_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->timestamp('response_date')->nullable();
 
             $table->timestamps();
